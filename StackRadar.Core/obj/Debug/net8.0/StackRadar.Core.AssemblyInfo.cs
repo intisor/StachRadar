@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StackRadar.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e7e84eec89de3468ce3708ccf986b3a88a7d515")]
 [assembly: System.Reflection.AssemblyProductAttribute("StackRadar.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StackRadar.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
