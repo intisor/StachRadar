@@ -1,0 +1,144 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                      StackRadar - Complete Command Demo                      ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+StackRadar now supports THREE main commands:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣  SCAN MODE (Default) - Fingerprint domains for ASP.NET technology
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Command: stackradar --help
+
+┏━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Option             │ Description                                             ┃
+┠────────────────────┼─────────────────────────────────────────────────────────┨
+┃ --input, -i        │ Path to a targets.txt or CSV containing domains         ┃
+┃                    │ (default: targets.txt)                                  ┃
+┃ --output, -o       │ Path for the output CSV (default: prospects.csv)        ┃
+┃ --concurrency, -c  │ Number of parallel scans (default: 10)                  ┃
+┃ --retry            │ Retry count for transient errors (default: 2)           ┃
+┃ --timeout          │ Per-request timeout in seconds (default: 20)            ┃
+┃ --no-http-fallback │ Disable HTTP fallback when HTTPS fails                  ┃
+┃ --verbose, -v      │ Enable verbose logging output                           ┃
+┃ --help, -h         │ Show this help message                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Example:
+  stackradar --input targets.txt --output prospects.csv --concurrency 10
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2️⃣  SCOUT MODE - Discover domains from various sources
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Command: stackradar scout --help
+
+┏━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Option        │ Description                                        ┃
+┠───────────────┼────────────────────────────────────────────────────┨
+┃ --source, -s  │ Domain source to run (default: builtwithdotnet)    ┃
+┃ --limit, -l   │ Maximum domains to retrieve (default: 200)         ┃
+┃ --pages, -p   │ Maximum pages to iterate (default: 5)              ┃
+┃ --query, -q   │ Optional filter (e.g., technology flag)            ┃
+┃ --output, -o  │ File to write domains to (default: discovered.txt) ┃
+┃ --append      │ Append to output instead of overwrite              ┃
+┃ --timeout     │ Per-request timeout in seconds (default: 30)       ┃
+┃ --verbose, -v │ Enable verbose logs                                ┃
+┃ --help, -h    │ Show this help message                             ┃
+┗━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Example:
+  stackradar scout --source builtwithdotnet --limit 200 --output discovered.txt
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3️⃣  JOB-SEARCH MODE - Search job boards & generate LinkedIn URLs ⭐ NEW!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Command: stackradar job-search --help
+
+┏━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Option             │ Description                                             ┃
+┠────────────────────┼─────────────────────────────────────────────────────────┨
+┃ --query, -q        │ Job search query (e.g., 'ASP.NET Developer') (required) ┃
+┃ --location, -l     │ Job location (e.g., 'New York, NY')                     ┃
+┃ --source, -s       │ Job board source (default: indeed)                      ┃
+┃ --limit            │ Maximum jobs to retrieve (default: 50)                  ┃
+┃ --pages, -p        │ Maximum pages to iterate (default: 3)                   ┃
+┃ --output, -o       │ CSV file to write results (default: jobs.csv)           ┃
+┃ --include-linkedin │ Include LinkedIn search URLs for companies and staff    ┃
+┃ --timeout          │ Per-request timeout in seconds (default: 30)            ┃
+┃ --verbose, -v      │ Enable verbose logs                                     ┃
+┃ --help, -h         │ Show this help message                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Example:
+  stackradar job-search --query "ASP.NET Developer" --include-linkedin
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 WORKFLOW EXAMPLE: End-to-End Job Search to Company Analysis
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Step 1: Find .NET jobs with company info and LinkedIn links
+  $ stackradar job-search --query "ASP.NET Core" --limit 100 --include-linkedin
+  → Creates jobs.csv with company names and LinkedIn URLs
+
+Step 2: Research companies on LinkedIn
+  → Open jobs.csv in Excel
+  → Click CompanyLinkedInUrl to find company pages
+  → Click PeopleLinkedInUrl to find hiring managers/recruiters
+
+Step 3: (Optional) Extract domains from company websites and scan for tech stack
+  → Create domains.txt from company websites
+  $ stackradar --input domains.txt --output tech-analysis.csv
+  → Verify they actually use .NET technologies
+
+Step 4: Apply and network!
+  → Visit job URLs to apply
+  → Connect with people on LinkedIn
+  → Mention specific tech stack you found in Step 3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 JOB SEARCH CSV OUTPUT FORMAT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+jobs.csv includes:
+  ✓ Title                  - Job title
+  ✓ Company                - Company name
+  ✓ Location               - Job location
+  ✓ Description            - Job description snippet
+  ✓ Url                    - Direct link to job posting
+  ✓ Source                 - Job board (indeed)
+  ✓ CompanyLinkedInUrl     - LinkedIn company search (with --include-linkedin)
+  ✓ PeopleLinkedInUrl      - LinkedIn people search (with --include-linkedin)
+  ✓ RetrievedAt            - When job was found
+
+See docs/sample_jobs_output.csv for an example!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Complete guide: docs/job_search_usage.md
+  • Sample output: docs/sample_jobs_output.csv
+  • Implementation details: IMPLEMENTATION_SUMMARY.md
+  • Quick start: README.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  IMPORTANT NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Personal use only - not for commercial scraping
+  • Rate limiting: 2-second delay between requests
+  • Respects limits but check job board ToS
+  • Use responsibly for legitimate job searching
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ Built with .NET 8, HtmlAgilityPack, CsvHelper, and Spectre.Console
