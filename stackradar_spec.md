@@ -86,9 +86,10 @@ A founder-level technical requirement and design blueprint for building a real-w
 
 **CLI Sourcing Commands**
 
-* `stackradar scout --source builtwith --max 500` → Pulls latest domains tagged with ASP.NET from the BuiltWith API.
-* `stackradar scout --source search --query "ViewState" --pages 3` → Executes search dorks via Bing Custom Search to uncover long-tail leads.
-* `stackradar scout --ingest targets.csv` → Ingests bulk CSV exports (e.g., BuiltWith lists) and normalizes into the domain queue.
+* `stackradar scout --source builtwithdotnet --limit 500` → Pulls latest domains from builtwithdot.net public API.
+* `stackradar scout --source builtwithdotnet --query "Blazor" --limit 100` → Filters domains by specific .NET technology.
+* `stackradar scout --source search --query "ViewState" --pages 3` → (Future) Executes search dorks via Bing Custom Search to uncover long-tail leads.
+* `stackradar scout --ingest targets.csv` → (Future) Ingests bulk CSV exports and normalizes into the domain queue.
 
 #### **Scanner Engine**
 
