@@ -12,5 +12,6 @@ public enum DetectionSignal
     CookieAspNetCore,
     FinalUrlAspx,
     EnrichmentWhoisMicrosoft,
-    EnrichmentGitHubMatch
+    EnrichmentGitHubMatch,
+    BuiltWithAspNet
 }

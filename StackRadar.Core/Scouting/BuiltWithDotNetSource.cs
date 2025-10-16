@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using HtmlAgilityPack;
 
 namespace StackRadar.Core.Scouting;
 
@@ -19,7 +20,7 @@ public sealed class BuiltWithDotNetSource : IDomainSource
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public string Name => "builtwithdotnet";
+    public string Name => "whatruns";
 
     public async IAsyncEnumerable<DomainCandidate> FetchAsync(DomainSourceRequest request, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
@@ -27,7 +28,7 @@ public sealed class BuiltWithDotNetSource : IDomainSource
         var maxPages = request.MaxPages ?? 5;
         var totalYielded = 0;
         var limit = request.Limit;
-        var query = request.Query;
+        var query = (request.Query ?? "asp.net").Replace(".", "-");
 
         for (var page = 1; page <= maxPages; page++)
         {
@@ -35,34 +36,29 @@ public sealed class BuiltWithDotNetSource : IDomainSource
             using var response = await client.GetAsync(url, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
-                _logger.LogWarning("BuiltWithDotNet responded with {StatusCode} for {Url}", response.StatusCode, url);
+                _logger.LogWarning("WhatRuns responded with {StatusCode} for {Url}", response.StatusCode, url);
                 yield break;
             }
 
-            await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
-            var payload = await JsonSerializer.DeserializeAsync<WebsiteResponse>(stream, cancellationToken: cancellationToken);
-            if (payload?.Data is null || payload.Data.Count == 0)
+            var html = await response.Content.ReadAsStringAsync(cancellationToken);
+            _logger.LogInformation("HTML length: {Length}", html.Length);
+            var domains = ParseDomains(html);
+            _logger.LogInformation("Found {Count} domains", domains.Count);
+            if (domains.Count == 0)
             {
-                _logger.LogInformation("BuiltWithDotNet returned no data for page {Page}", page);
+                _logger.LogInformation("WhatRuns returned no domains for page {Page}", page);
                 yield break;
             }
 
-            foreach (var site in payload.Data)
+            foreach (var domain in domains)
             {
-                var domain = NormalizeDomain(site.Domain ?? site.Url ?? site.Host ?? site.Name);
-                if (string.IsNullOrWhiteSpace(domain))
-                {
-                    continue;
-                }
-
                 var metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
-                    ["name"] = site.Name ?? string.Empty,
-                    ["technology"] = site.Technology ?? string.Empty,
-                    ["url"] = site.Url ?? string.Empty
+                    ["technology"] = query.Replace("-", "."),
+                    ["url"] = $"https://{domain}"
                 };
 
-                yield return DomainCandidate.Create(domain, Name, 0.6, metadata);
+                yield return DomainCandidate.Create(domain, Name, 0.8, metadata);
                 totalYielded++;
 
                 if (limit.HasValue && totalYielded >= limit.Value)
@@ -70,23 +66,95 @@ public sealed class BuiltWithDotNetSource : IDomainSource
                     yield break;
                 }
             }
-
-            if (payload.LastPage.HasValue && page >= payload.LastPage.Value)
-            {
-                yield break;
-            }
         }
     }
 
-    private static string BuildUrl(int page, string? technology)
+    private static string BuildUrl(int page, string technology)
     {
-        var baseUrl = $"https://builtwithdot.net/api/websites?page={page}";
-        if (!string.IsNullOrWhiteSpace(technology))
+        // BuiltWith websitelist URL for Nigerian ASP.NET sites
+        return $"https://trends.builtwith.com/websitelist/{Uri.EscapeDataString(technology)}/Nigeria?page={page}";
+    }
+
+    private static IReadOnlyList<string> ParseDomains(string html)
+    {
+        var domains = new List<string>();
+        var doc = new HtmlDocument();
+        doc.LoadHtml(html);
+
+        // Look for table rows with website data
+        var rows = doc.DocumentNode.SelectNodes("//tr[@data-website]");
+        if (rows != null && rows.Count > 0)
         {
-            baseUrl += $"&technology={Uri.EscapeDataString(technology)}";
+            Console.WriteLine($"Found {rows.Count} table rows with websites");
+            foreach (var row in rows)
+            {
+                var website = row.GetAttributeValue("data-website", "");
+                if (!string.IsNullOrWhiteSpace(website))
+                {
+                    domains.Add(website.ToLowerInvariant());
+                    Console.WriteLine($"Website: {website}");
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("No table rows found, looking for JSON data");
+            // Look for JSON data in script tags
+            var scripts = doc.DocumentNode.SelectNodes("//script");
+            if (scripts != null)
+            {
+                foreach (var script in scripts)
+                {
+                    var content = script.InnerText;
+                    if (content.Contains("websites") || content.Contains("data"))
+                    {
+                        // Try to extract domains from JSON-like structures
+                        var jsonRegex = new System.Text.RegularExpressions.Regex(@"""website""\s*:\s*""([^""]+)""");
+                        var matches = jsonRegex.Matches(content);
+                        foreach (System.Text.RegularExpressions.Match match in matches)
+                        {
+                            var domain = match.Groups[1].Value.ToLowerInvariant();
+                            if (!string.IsNullOrWhiteSpace(domain) && domain.Contains('.'))
+                            {
+                                domains.Add(domain);
+                                Console.WriteLine($"JSON Website: {domain}");
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (domains.Count == 0)
+            {
+                Console.WriteLine("No JSON data found, falling back to targeted regex");
+                // More targeted regex for actual website domains (not tech domains)
+                var domainRegex = new System.Text.RegularExpressions.Regex(@"\b[a-zA-Z0-9-]+\.(?:com|org|net|edu|gov|ng|co\.uk|co\.za)\b");
+                var matches = domainRegex.Matches(html);
+                
+                Console.WriteLine($"Found {matches.Count} targeted domain matches");
+                foreach (System.Text.RegularExpressions.Match match in matches)
+                {
+                    var domain = match.Value.ToLowerInvariant();
+                    // Filter out known tech domains and builtwith domains
+                    if (!domain.Contains("builtwith.com") && 
+                        !domain.Contains("shopify.com") && 
+                        !domain.Contains("wordpress.org") && 
+                        !domain.Contains("adobe.com") && 
+                        !domain.Contains("google.com") && 
+                        !domain.Contains("amazon.com") && 
+                        !domain.Contains("jsdelivr") && 
+                        !domain.Contains("cloudfront") && 
+                        !domain.Contains("w3.org") &&
+                        !domain.Contains("example"))
+                    {
+                        domains.Add(domain);
+                        Console.WriteLine($"Targeted Domain: {domain}");
+                    }
+                }
+            }
         }
 
-        return baseUrl;
+        return domains.Distinct().Take(50).ToList();
     }
 
     private static string? NormalizeDomain(string? value)
@@ -113,18 +181,4 @@ public sealed class BuiltWithDotNetSource : IDomainSource
 
         return trimmed.ToLowerInvariant();
     }
-
-    private sealed record WebsiteResponse(
-        [property: JsonPropertyName("data")] IReadOnlyList<WebsiteEntry> Data,
-        [property: JsonPropertyName("current_page")] int? CurrentPage,
-        [property: JsonPropertyName("last_page")] int? LastPage
-    );
-
-    private sealed record WebsiteEntry(
-        [property: JsonPropertyName("name")] string? Name,
-        [property: JsonPropertyName("url")] string? Url,
-        [property: JsonPropertyName("domain")] string? Domain,
-        [property: JsonPropertyName("host")] string? Host,
-        [property: JsonPropertyName("technology")] string? Technology
-    );
 }

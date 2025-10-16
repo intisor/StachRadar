@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "Microsoft.Playwright": {
+              "target": "Package",
+              "version": "[1.39.1, )"
+            },
             "Polly": {
               "target": "Package",
               "version": "[7.2.3, )"

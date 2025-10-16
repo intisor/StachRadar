@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "0uRiDvx9674=",
+  "dgSpecHash": "sFBe8Epyh4E=",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Cli\\StackRadar.Cli.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\htmlagilitypack\\1.11.64\\htmlagilitypack.1.11.64.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration.binder\\8.0.0\\microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",
@@ -34,13 +35,28 @@
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.playwright\\1.40.0\\microsoft.playwright.1.40.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\spectre.console\\0.47.0\\spectre.console.0.47.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\polly.extensions.http\\3.0.0\\polly.extensions.http.3.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\spectre.console\\0.44.0\\spectre.console.0.44.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.17\\microsoft.netcore.app.ref.8.0.17.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.17\\microsoft.windowsdesktop.app.ref.8.0.17.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.17\\microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.17\\microsoft.netcore.app.host.win-x64.8.0.17.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "StackRadar.Core depends on Microsoft.Playwright (>= 1.39.1) but Microsoft.Playwright 1.39.1 was not found. Microsoft.Playwright 1.40.0 was resolved instead.",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Cli\\StackRadar.Cli.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Cli\\StackRadar.Cli.csproj",
+      "libraryId": "Microsoft.Playwright",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

@@ -2,15 +2,27 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Polly;
 using Polly.Retry;
 using StackRadar.Core.Detection;
 using StackRadar.Core.Models;
 
 namespace StackRadar.Core.Services;
+
+public sealed record BuiltWithOptions
+{
+    public string ApiKey { get; init; } = string.Empty;
+}
+
+public sealed record UrlScanOptions
+{
+    public string ApiKey { get; init; } = string.Empty;
+}
 
 public sealed class DomainScanner : IDomainScanner
 {
@@ -21,19 +33,25 @@ public sealed class DomainScanner : IDomainScanner
     private readonly ScannerOptions _scannerOptions;
     private readonly ILogger<DomainScanner> _logger;
     private readonly AsyncRetryPolicy<HttpResponseMessage> _retryPolicy;
+    private readonly BuiltWithOptions? _builtWithOptions;
+    private readonly UrlScanOptions? _urlScanOptions;
 
     public DomainScanner(
         IHttpClientFactory httpClientFactory,
         DetectionEngine detectionEngine,
         DetectionOptions detectionOptions,
         ScannerOptions scannerOptions,
-        ILogger<DomainScanner> logger)
+        ILogger<DomainScanner> logger,
+        IOptions<BuiltWithOptions>? builtWithOptions = null,
+        IOptions<UrlScanOptions>? urlScanOptions = null)
     {
         _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         _detectionEngine = detectionEngine ?? throw new ArgumentNullException(nameof(detectionEngine));
         _detectionOptions = detectionOptions ?? throw new ArgumentNullException(nameof(detectionOptions));
         _scannerOptions = scannerOptions ?? throw new ArgumentNullException(nameof(scannerOptions));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _builtWithOptions = builtWithOptions?.Value;
+        _urlScanOptions = urlScanOptions?.Value;
 
         _retryPolicy = Policy
             .Handle<HttpRequestException>()
@@ -112,7 +130,8 @@ public sealed class DomainScanner : IDomainScanner
                 html,
                 stopwatch.Elapsed);
 
-            var detectionOutcome = _detectionEngine.Evaluate(artifacts);
+            var enrichmentEvidence = await GetEnrichmentEvidenceAsync(domain, cancellationToken);
+            var detectionOutcome = _detectionEngine.Evaluate(artifacts, enrichmentEvidence);
 
             return new DomainScanResult(
                 domain,
@@ -223,4 +242,143 @@ public sealed class DomainScanner : IDomainScanner
 
         return cookies;
     }
+
+    private async Task<IReadOnlyList<DetectionEvidence>> GetEnrichmentEvidenceAsync(string domain, CancellationToken cancellationToken)
+    {
+        var evidence = new List<DetectionEvidence>();
+
+        // BuiltWith evidence
+        if (_builtWithOptions is not null && !string.IsNullOrWhiteSpace(_builtWithOptions.ApiKey))
+        {
+            evidence.AddRange(await GetBuiltWithEvidenceAsync(domain, cancellationToken));
+        }
+
+        // URLscan evidence
+        if (_urlScanOptions is not null && !string.IsNullOrWhiteSpace(_urlScanOptions.ApiKey))
+        {
+            evidence.AddRange(await GetUrlScanEvidenceAsync(domain, cancellationToken));
+        }
+
+        return evidence;
+    }
+
+    private async Task<IReadOnlyList<DetectionEvidence>> GetBuiltWithEvidenceAsync(string domain, CancellationToken cancellationToken)
+    {
+        var evidence = new List<DetectionEvidence>();
+        if (_builtWithOptions is null || string.IsNullOrWhiteSpace(_builtWithOptions.ApiKey))
+        {
+            return evidence;
+        }
+
+        try
+        {
+            var client = _httpClientFactory.CreateClient("scanner");
+            var url = $"https://api.builtwith.com/v14/api.json?KEY={_builtWithOptions.ApiKey}&LOOKUP={Uri.EscapeDataString(domain)}";
+            using var response = await client.GetAsync(url, cancellationToken);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync(cancellationToken);
+                var builtWithData = System.Text.Json.JsonSerializer.Deserialize<BuiltWithResponse>(json);
+                if (builtWithData?.Results?.Length > 0)
+                {
+                    var result = builtWithData.Results[0];
+                    if (result.Technologies?.Any(t => t.Name.Contains("ASP.NET", StringComparison.OrdinalIgnoreCase)) == true)
+                    {
+                        evidence.Add(new DetectionEvidence(
+                            DetectionSignal.BuiltWithAspNet,
+                            "BuiltWith detected ASP.NET",
+                            string.Join(", ", result.Technologies.Where(t => t.Name.Contains("ASP.NET")).Select(t => t.Name)),
+                            2));
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to get BuiltWith data for {Domain}", domain);
+        }
+
+        return evidence;
+    }
+
+    private async Task<IReadOnlyList<DetectionEvidence>> GetUrlScanEvidenceAsync(string domain, CancellationToken cancellationToken)
+    {
+        var evidence = new List<DetectionEvidence>();
+        if (_urlScanOptions is null || string.IsNullOrWhiteSpace(_urlScanOptions.ApiKey))
+        {
+            return evidence;
+        }
+
+        try
+        {
+            var client = _httpClientFactory.CreateClient("scanner");
+            client.DefaultRequestHeaders.Add("API-Key", _urlScanOptions.ApiKey);
+            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+            // Submit scan
+            var submitUrl = "https://urlscan.io/api/v1/scan/";
+            var submitData = new { url = $"https://{domain}", visibility = "public" };
+            var submitJson = System.Text.Json.JsonSerializer.Serialize(submitData);
+            using var submitResponse = await client.PostAsync(submitUrl, new StringContent(submitJson, System.Text.Encoding.UTF8, "application/json"), cancellationToken);
+            if (submitResponse.IsSuccessStatusCode)
+            {
+                var submitContent = await submitResponse.Content.ReadAsStringAsync(cancellationToken);
+                var submitResult = System.Text.Json.JsonSerializer.Deserialize<UrlScanSubmitResponse>(submitContent);
+                if (submitResult?.Uuid != null)
+                {
+                    // Wait a bit and get results
+                    await Task.Delay(5000, cancellationToken); // Wait 5 seconds
+                    var resultUrl = $"https://urlscan.io/api/v1/result/{submitResult.Uuid}/";
+                    using var resultResponse = await client.GetAsync(resultUrl, cancellationToken);
+                    if (resultResponse.IsSuccessStatusCode)
+                    {
+                        var resultContent = await resultResponse.Content.ReadAsStringAsync(cancellationToken);
+                        var result = System.Text.Json.JsonSerializer.Deserialize<UrlScanResult>(resultContent);
+                        if (result?.Data?.Technologies != null)
+                        {
+                            var aspNetTechs = result.Data.Technologies.Where(t => t.Contains("ASP.NET", StringComparison.OrdinalIgnoreCase));
+                            if (aspNetTechs.Any())
+                            {
+                                evidence.Add(new DetectionEvidence(
+                                    DetectionSignal.BuiltWithAspNet, // Reuse signal
+                                    "URLscan.io detected ASP.NET",
+                                    string.Join(", ", aspNetTechs),
+                                    1));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to get URLscan data for {Domain}", domain);
+        }
+
+        return evidence;
+    }
+
+    private sealed record BuiltWithResponse(
+        [property: System.Text.Json.Serialization.JsonPropertyName("Results")] BuiltWithResult[] Results
+    );
+
+    private sealed record BuiltWithResult(
+        [property: System.Text.Json.Serialization.JsonPropertyName("Technologies")] BuiltWithTechnology[] Technologies
+    );
+
+    private sealed record BuiltWithTechnology(
+        [property: System.Text.Json.Serialization.JsonPropertyName("Name")] string Name
+    );
+
+    private sealed record UrlScanSubmitResponse(
+        [property: System.Text.Json.Serialization.JsonPropertyName("uuid")] string Uuid
+    );
+
+    private sealed record UrlScanResult(
+        [property: System.Text.Json.Serialization.JsonPropertyName("data")] UrlScanData Data
+    );
+
+    private sealed record UrlScanData(
+        [property: System.Text.Json.Serialization.JsonPropertyName("technologies")] string[] Technologies
+    );
 }

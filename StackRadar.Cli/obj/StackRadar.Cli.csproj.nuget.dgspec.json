@@ -59,13 +59,33 @@
               "target": "Package",
               "version": "[30.0.1, )"
             },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            },
+            "Polly.Extensions.Http": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "Spectre.Console": {
               "target": "Package",
-              "version": "[0.47.0, )"
+              "version": "[0.44.0, )"
             }
           },
           "imports": [
@@ -451,6 +471,10 @@
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "Microsoft.Playwright": {
+              "target": "Package",
+              "version": "[1.39.1, )"
             },
             "Polly": {
               "target": "Package",

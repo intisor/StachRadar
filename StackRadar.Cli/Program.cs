@@ -12,6 +12,8 @@ using StackRadar.Core.Detection;
 using StackRadar.Core.Models;
 using StackRadar.Core.Services;
 using StackRadar.Core.Scouting;
+using StackRadar.Core.Scraping;
+using Microsoft.Extensions.Configuration;
 
 return await RunAsync(args);
 
@@ -186,12 +188,28 @@ static async Task<int> RunScoutAsync(string[] args)
 			});
 
 			services.AddTransient<BuiltWithDotNetSource>();
+			services.AddTransient<WebContentExtractor>();
+			services.AddTransient<AdvancedWebScraperSource>();
+			
+			// Configure Gemma AI enricher
+			var gemmaOptions = new GemmaOptions
+			{
+				Endpoint = "http://localhost:11434",
+				Model = "gemma:7b",
+				Enabled = true
+			};
+			services.AddSingleton(gemmaOptions);
+			services.AddHttpClient<GemmaAiEnricher>();
+			
+			// Register full web scraper
+			services.AddHttpClient<FullWebScraper>();
 		})
 		.Build();
 
 	IDomainSource source = options.Source.ToLowerInvariant() switch
 	{
 		"builtwithdotnet" => host.Services.GetRequiredService<BuiltWithDotNetSource>(),
+		"fullscrape" => host.Services.GetRequiredService<AdvancedWebScraperSource>(),
 		_ => throw new InvalidOperationException($"Unknown source '{options.Source}'.")
 	};
 

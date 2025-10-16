@@ -9,8 +9,13 @@
       "StackRadar.Cli/1.0.0": {
         "dependencies": {
           "CsvHelper": "30.0.1",
+          "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "Microsoft.Extensions.Hosting": "8.0.0",
-          "Spectre.Console": "0.47.0",
+          "Microsoft.Extensions.Http": "8.0.1",
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "Polly": "7.2.3",
+          "Polly.Extensions.Http": "3.0.0",
+          "Spectre.Console": "0.44.0",
           "StackRadar.Core": "1.0.0"
         },
         "runtime": {
@@ -30,6 +35,14 @@
           "lib/netstandard2.0/HtmlAgilityPack.dll": {
             "assemblyVersion": "1.11.64.0",
             "fileVersion": "1.11.64.0"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -408,6 +421,17 @@
           }
         }
       },
+      "Microsoft.Playwright/1.40.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Playwright.dll": {
+            "assemblyVersion": "1.40.0.0",
+            "fileVersion": "1.40.0.0"
+          }
+        }
+      },
       "Polly/7.2.3": {
         "runtime": {
           "lib/netstandard2.0/Polly.dll": {
@@ -416,11 +440,22 @@
           }
         }
       },
-      "Spectre.Console/0.47.0": {
+      "Polly.Extensions.Http/3.0.0": {
+        "dependencies": {
+          "Polly": "7.2.3"
+        },
         "runtime": {
-          "lib/net7.0/Spectre.Console.dll": {
+          "lib/netstandard2.0/Polly.Extensions.Http.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Spectre.Console/0.44.0": {
+        "runtime": {
+          "lib/net6.0/Spectre.Console.dll": {
             "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.47.0.0"
+            "fileVersion": "0.44.0.0"
           }
         }
       },
@@ -451,6 +486,7 @@
           "HtmlAgilityPack": "1.11.64",
           "Microsoft.Extensions.Http": "8.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
+          "Microsoft.Playwright": "1.40.0",
           "Polly": "7.2.3"
         },
         "runtime": {
@@ -481,6 +517,13 @@
       "sha512": "sha512-5GtlZ7Y/L1k5zBokuOGW96PVTItRv/QCUJWlXiZ5YvYN2DI8wFto+WXBxkF55DdG0WabAG/F3ghqOMGdo89Rlg==",
       "path": "htmlagilitypack/1.11.64",
       "hashPath": "htmlagilitypack.1.11.64.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "path": "microsoft.bcl.asyncinterfaces/6.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/8.0.0": {
       "type": "package",
@@ -678,6 +721,13 @@
       "path": "microsoft.extensions.primitives/8.0.0",
       "hashPath": "microsoft.extensions.primitives.8.0.0.nupkg.sha512"
     },
+    "Microsoft.Playwright/1.40.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Eg4a4m5JG27T+tSueaGboQBALxB4fyzn0yDSd8bc8UZLHD/XdklHCQjsgsD5iBrVLVIjnEiIbDI0DPmsEn91Cg==",
+      "path": "microsoft.playwright/1.40.0",
+      "hashPath": "microsoft.playwright.1.40.0.nupkg.sha512"
+    },
     "Polly/7.2.3": {
       "type": "package",
       "serviceable": true,
@@ -685,12 +735,19 @@
       "path": "polly/7.2.3",
       "hashPath": "polly.7.2.3.nupkg.sha512"
     },
-    "Spectre.Console/0.47.0": {
+    "Polly.Extensions.Http/3.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wz8mszcZr0cSOo8GyoG9e2DFW0SkMT8/n78Q/lIXX7EbCtHNXOoOKWpJ9Str+rCYtmQOGGyDutZzubrUHK/XkA==",
-      "path": "spectre.console/0.47.0",
-      "hashPath": "spectre.console.0.47.0.nupkg.sha512"
+      "sha512": "sha512-drrG+hB3pYFY7w1c3BD+lSGYvH2oIclH8GRSehgfyP5kjnFnHKQuuBhuHLv+PWyFuaTDyk/vfRpnxOzd11+J8g==",
+      "path": "polly.extensions.http/3.0.0",
+      "hashPath": "polly.extensions.http.3.0.0.nupkg.sha512"
+    },
+    "Spectre.Console/0.44.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QMpKtn5QV1j2nklqDwuRE/XwbDn5jxww+Mt5J6Jn3EeQIzaLcuLyUhCLh/mS8giN6uXbqOV1ep5HlUGxrV1ujQ==",
+      "path": "spectre.console/0.44.0",
+      "hashPath": "spectre.console.0.44.0.nupkg.sha512"
     },
     "System.Diagnostics.EventLog/8.0.0": {
       "type": "package",

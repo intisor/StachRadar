@@ -1,0 +1,112 @@
+# .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+*.tmp
+*.temp
+
+# Visual Studio
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Rider
+.idea/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Test results
+TestResults/
+*.trx
+*.testsettings
+
+# User-specific files
+*.user
+*.suo
+
+# Project-specific
+# Add any project-specific ignore patterns here
+discovered.txt
+prospects.csv
+targets.txt
+*.csv
+*.txt
+
+# Temporary files
+*.tmp
+*.bak
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# API keys and secrets
+secrets.json
+appsettings.*.json
+
+# Node.js (if any frontend components)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage reports
+coverage/
+*.coverage
+*.coveragexml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
