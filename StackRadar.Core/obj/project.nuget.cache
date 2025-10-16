@@ -1,42 +1,30 @@
 {
   "version": 2,
-  "dgSpecHash": "3rt7RzKtuyI=",
-  "success": true,
+  "dgSpecHash": "f6JYy0/Eo/E=",
+  "success": false,
   "projectFilePath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Core\\StackRadar.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\DELL\\.nuget\\packages\\htmlagilitypack\\1.11.64\\htmlagilitypack.1.11.64.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration.binder\\8.0.0\\microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.diagnostics\\8.0.1\\microsoft.extensions.diagnostics.8.0.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\8.0.1\\microsoft.extensions.diagnostics.abstractions.8.0.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.http\\8.0.1\\microsoft.extensions.http.8.0.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.logging\\8.0.1\\microsoft.extensions.logging.8.0.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.playwright\\1.40.0\\microsoft.playwright.1.40.0.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.17\\microsoft.netcore.app.ref.8.0.17.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.17\\microsoft.windowsdesktop.app.ref.8.0.17.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.17\\microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512"
   ],
   "logs": [
     {
-      "code": "NU1603",
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.\r\n  The SSL connection could not be established, see inner exception.\r\n  Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host..\r\n  An existing connection was forcibly closed by the remote host.",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Core\\StackRadar.Core.csproj",
+      "filePath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Core\\StackRadar.Core.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1900",
       "level": "Warning",
-      "message": "StackRadar.Core depends on Microsoft.Playwright (>= 1.39.1) but Microsoft.Playwright 1.39.1 was not found. Microsoft.Playwright 1.40.0 was resolved instead.",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
       "projectPath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Core\\StackRadar.Core.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\DELL\\Desktop\\Coded\\stackTracer\\StackRadar.Core\\StackRadar.Core.csproj",
-      "libraryId": "Microsoft.Playwright",
-      "targetGraphs": [
-        "net8.0"
-      ]
+      "targetGraphs": []
     }
   ]
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StackRadar.Cli")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+007abdff04a2998a67568b5885dfa90aefc9fff4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e82680d3adc8870904811c5e6a47ac49aafc5180")]
 [assembly: System.Reflection.AssemblyProductAttribute("StackRadar.Cli")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StackRadar.Cli")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

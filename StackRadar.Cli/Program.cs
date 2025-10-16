@@ -190,6 +190,8 @@ static async Task<int> RunScoutAsync(string[] args)
 			services.AddTransient<BuiltWithDotNetSource>();
 			services.AddTransient<WebContentExtractor>();
 			services.AddTransient<AdvancedWebScraperSource>();
+			services.AddTransient<LocalAiAnalyzer>();
+			services.AddTransient<DotNetJobScraper>();
 			
 			// Configure Gemma AI enricher
 			var gemmaOptions = new GemmaOptions
@@ -210,6 +212,7 @@ static async Task<int> RunScoutAsync(string[] args)
 	{
 		"builtwithdotnet" => host.Services.GetRequiredService<BuiltWithDotNetSource>(),
 		"fullscrape" => host.Services.GetRequiredService<AdvancedWebScraperSource>(),
+		"dotnetjobs" => host.Services.GetRequiredService<DotNetJobScraper>(),
 		_ => throw new InvalidOperationException($"Unknown source '{options.Source}'.")
 	};
 
@@ -555,6 +558,7 @@ internal sealed record ScoutOptions
 		table.AddRow("--limit, -l", "Maximum domains to retrieve (default: 200)");
 		table.AddRow("--pages, -p", "Maximum pages to iterate (default: 5)");
 		table.AddRow("--query, -q", "Optional filter (e.g., technology flag)");
+		table.AddRow("", "Sources: builtwithdotnet | fullscrape | dotnetjobs");
 		table.AddRow("--output, -o", "File to write domains to (default: discovered.txt)");
 		table.AddRow("--append", "Append to output instead of overwrite");
 		table.AddRow("--timeout", "Per-request timeout in seconds (default: 30)");
