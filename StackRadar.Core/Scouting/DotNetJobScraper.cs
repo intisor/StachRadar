@@ -33,7 +33,6 @@ public sealed class DotNetJobScraper : IDomainSource
 			yield break;
 		}
 
-		var totalYielded = 0;
 		var limit = request.Limit ?? 100;
 
 		// Keywords to search for .NET positions

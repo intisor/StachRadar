@@ -190,7 +190,6 @@ static async Task<int> RunScoutAsync(string[] args)
 			services.AddTransient<BuiltWithDotNetSource>();
 			services.AddTransient<WebContentExtractor>();
 			services.AddTransient<AdvancedWebScraperSource>();
-			services.AddTransient<LocalAiAnalyzer>();
 			services.AddTransient<DotNetJobScraper>();
 			
 			// Configure Gemma AI enricher
