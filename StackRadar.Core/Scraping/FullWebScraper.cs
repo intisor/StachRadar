@@ -89,39 +89,33 @@ public sealed class FullWebScraper
     }
 
     /// <summary>
-    /// Scrape multiple domains with concurrency control
+    /// Scrape multiple domains with concurrency control.
+    /// Uses Parallel.ForEachAsync for cleaner, modern concurrency handling.
+    /// Default maxConcurrency = 3 is optimized for Latitude E6440 (2 cores / 4 threads).
     /// </summary>
     public async IAsyncEnumerable<ScrapedWebsiteData> ScrapeMultipleAsync(
         IEnumerable<string> domains,
-        int maxConcurrency = 5,
+        int maxConcurrency = 3, // Optimized for Dual Core E6440
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        var semaphore = new SemaphoreSlim(maxConcurrency);
-        var tasks = new List<Task<ScrapedWebsiteData?>>();
+        // Use ConcurrentBag for thread-safe collection
+        var results = new System.Collections.Concurrent.ConcurrentBag<ScrapedWebsiteData>();
 
-        foreach (var domain in domains)
+        // Use the modern Parallel.ForEachAsync (much cleaner)
+        await Parallel.ForEachAsync(domains, new ParallelOptions
         {
-            await semaphore.WaitAsync(cancellationToken);
-
-            tasks.Add(Task.Run(async () =>
-            {
-                try
-                {
-                    return await ScrapeAsync(domain, cancellationToken);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-            }, cancellationToken));
-        }
-
-        var results = await Task.WhenAll(tasks);
-
-        foreach (var result in results)
+            MaxDegreeOfParallelism = maxConcurrency,
+            CancellationToken = cancellationToken
+        }, async (domain, ct) =>
         {
-            if (result != null)
-                yield return result;
+            var data = await ScrapeAsync(domain, ct);
+            if (data != null)
+                results.Add(data);
+        });
+
+        foreach (var r in results)
+        {
+            yield return r;
         }
     }
 

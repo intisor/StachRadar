@@ -483,6 +483,7 @@
       },
       "StackRadar.Core/1.0.0": {
         "dependencies": {
+          "CsvHelper": "30.0.1",
           "HtmlAgilityPack": "1.11.64",
           "Microsoft.Extensions.Http": "8.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",

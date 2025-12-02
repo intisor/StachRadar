@@ -1,108 +1,154 @@
-using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Playwright;
 
 namespace StackRadar.Core.Scouting;
 
+/// <summary>
+/// GoogleDorkSource using Playwright to scrape Google SERP directly.
+/// This replaces the paid Google Custom Search API with a stealthy browser-based approach.
+/// Note: Run `pwsh bin/Debug/net8.0/playwright.ps1 install` to set up Playwright browsers.
+/// </summary>
 public sealed class GoogleDorkSource : IDomainSource
 {
-    private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<GoogleDorkSource> _logger;
-    private readonly GoogleCustomSearchOptions _options;
 
-    public GoogleDorkSource(IHttpClientFactory httpClientFactory, ILogger<GoogleDorkSource> logger, IOptions<GoogleCustomSearchOptions> options)
+    public GoogleDorkSource(ILogger<GoogleDorkSource> logger)
     {
-        _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        _options = options.Value;
     }
 
-    public string Name => "googledork";
+    public string Name => "googleserper"; // Renamed to reflect method
 
     public async IAsyncEnumerable<DomainCandidate> FetchAsync(DomainSourceRequest request, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        var client = _httpClientFactory.CreateClient("scout");
-        var query = BuildQuery(request.Query ?? ".NET");
-        var maxPages = request.MaxPages ?? 5;
-        var totalYielded = 0;
-        var limit = request.Limit;
+        // Collect results first to avoid yield-in-try-catch limitation
+        var results = await ScrapeGoogleAsync(request, cancellationToken);
 
-        for (var page = 1; page <= maxPages; page++)
+        foreach (var candidate in results)
         {
-            var startIndex = (page - 1) * 10 + 1; // Google returns 10 results per page
-            var url = $"https://www.googleapis.com/customsearch/v1?key={_options.ApiKey}&cx={_options.SearchEngineId}&q={Uri.EscapeDataString(query)}&start={startIndex}";
-
-            using var response = await client.GetAsync(url, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                _logger.LogWarning("Google Custom Search API responded with {StatusCode}", response.StatusCode);
-                yield break;
-            }
-
-            var payload = await response.Content.ReadFromJsonAsync<SearchResponse>(cancellationToken: cancellationToken);
-            if (payload?.Items is null || payload.Items.Count == 0)
-            {
-                _logger.LogInformation("No results for page {Page}", page);
-                yield break;
-            }
-
-            foreach (var item in payload.Items)
-            {
-                var domain = ExtractDomain(item.Link);
-                if (string.IsNullOrWhiteSpace(domain))
-                    continue;
-
-                var metadata = new Dictionary<string, string>
-                {
-                    ["title"] = item.Title ?? string.Empty,
-                    ["snippet"] = item.Snippet ?? string.Empty,
-                    ["link"] = item.Link ?? string.Empty
-                };
-
-                yield return DomainCandidate.Create(domain, Name, 0.7, metadata);
-
-                totalYielded++;
-                if (limit.HasValue && totalYielded >= limit.Value)
-                    yield break;
-            }
+            yield return candidate;
         }
     }
 
-    private static string BuildQuery(string keyword)
+    private async Task<List<DomainCandidate>> ScrapeGoogleAsync(DomainSourceRequest request, CancellationToken cancellationToken)
     {
-        var keywords = string.IsNullOrWhiteSpace(keyword)
-            ? new[] { "ASP.NET", ".NET", "C#", "VB.NET", "Entity Framework" }
-            : new[] { keyword };
+        var candidates = new List<DomainCandidate>();
+        IPlaywright? playwright = null;
+        IBrowser? browser = null;
 
-        var keywordQuery = string.Join(" OR ", keywords.Select(k => $"\"{k}\""));
-        
-        // Focus on finding actual websites powered by ASP.NET in Nigeria
-        return $"({keywordQuery}) (site:*.ng OR site:*.com.ng OR \"Nigeria\" OR \"Lagos\" OR \"Abuja\") -inurl:jobs -inurl:careers -inurl:indeed -inurl:linkedin -inurl:glassdoor (\"powered by\" OR \"built with\" OR \"developed by\" OR \"©\" OR \"all rights reserved\")";
+        try
+        {
+            playwright = await Playwright.CreateAsync();
+            // Launch standard Chromium, headless but with a real user agent
+            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+
+            // Context with stealthier settings
+            var context = await browser.NewContextAsync(new BrowserNewContextOptions
+            {
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                ViewportSize = new ViewportSize { Width = 1920, Height = 1080 }
+            });
+
+            var page = await context.NewPageAsync();
+            var query = request.Query ?? "site:linkedin.com/company \"Nigeria\" \"ASP.NET\"";
+
+            _logger.LogInformation("Searching Google for: {Query}", query);
+
+            // Go to Google
+            await page.GotoAsync($"https://www.google.com/search?q={Uri.EscapeDataString(query)}&num=20");
+
+            // Wait for results (with timeout)
+            try
+            {
+                await page.WaitForSelectorAsync("div.g", new PageWaitForSelectorOptions { Timeout = 10000 });
+            }
+            catch (TimeoutException)
+            {
+                _logger.LogWarning("Timeout waiting for Google results. May have been rate-limited or CAPTCHA'd.");
+                return candidates;
+            }
+
+            // Extract using Playwright locators
+            var elements = await page.Locator("div.g").AllAsync();
+            var limit = request.Limit ?? 50;
+
+            foreach (var el in elements)
+            {
+                if (candidates.Count >= limit)
+                    break;
+
+                try
+                {
+                    var titleEl = el.Locator("h3").First;
+                    var linkEl = el.Locator("a").First;
+
+                    var title = await titleEl.InnerTextAsync();
+                    var link = await linkEl.GetAttributeAsync("href");
+
+                    if (string.IsNullOrEmpty(link))
+                        continue;
+
+                    // Extract domain or company info based on result type
+                    var metadata = new Dictionary<string, string>
+                    {
+                        ["title"] = title ?? string.Empty,
+                        ["link"] = link,
+                        ["source"] = "Google SERP"
+                    };
+
+                    string candidateDomain;
+
+                    if (link.Contains("linkedin.com/company"))
+                    {
+                        // LinkedIn company result - extract company name from title
+                        metadata["linkedinUrl"] = link;
+                        var companyName = title?.Split(new[] { '-', '|' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim() ?? "Unknown";
+                        candidateDomain = $"linkedin-{companyName.Replace(" ", "-").ToLowerInvariant()}";
+                    }
+                    else if (Uri.TryCreate(link, UriKind.Absolute, out var uri))
+                    {
+                        // Regular website result - use the domain
+                        candidateDomain = uri.Host.ToLowerInvariant();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    candidates.Add(DomainCandidate.Create(candidateDomain, Name, 0.8, metadata));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogDebug(ex, "Error extracting result element");
+                }
+            }
+
+            _logger.LogInformation("Extracted {Count} results from Google SERP", candidates.Count);
+
+            // Random delay to be nice to Google (avoid CAPTCHA)
+            await Task.Delay(Random.Shared.Next(2000, 5000), cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error during Google SERP scraping");
+        }
+        finally
+        {
+            if (browser != null) await browser.DisposeAsync();
+            playwright?.Dispose();
+        }
+
+        return candidates;
     }
+}
 
-    private static string? ExtractDomain(string? url)
-    {
-        if (string.IsNullOrWhiteSpace(url) || !Uri.TryCreate(url, UriKind.Absolute, out var uri))
-            return null;
-        return uri.Host.ToLowerInvariant();
-    }
-
-    public sealed record GoogleCustomSearchOptions
-    {
-        public string ApiKey { get; init; } = string.Empty;
-        public string SearchEngineId { get; init; } = string.Empty;
-    }
-
-    private sealed record SearchResponse(
-        [property: JsonPropertyName("items")] IReadOnlyList<SearchItem> Items
-    );
-
-    private sealed record SearchItem(
-        [property: JsonPropertyName("title")] string? Title,
-        [property: JsonPropertyName("link")] string? Link,
-        [property: JsonPropertyName("snippet")] string? Snippet
-    );
+/// <summary>
+/// Legacy options class kept for backward compatibility with existing DI registrations.
+/// No longer used by the Playwright-based implementation.
+/// </summary>
+public sealed record GoogleCustomSearchOptions
+{
+    public string ApiKey { get; init; } = string.Empty;
+    public string SearchEngineId { get; init; } = string.Empty;
 }

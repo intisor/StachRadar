@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
     <PackageReference Include="Polly" Version="7.2.3" />
     <PackageReference Include="Microsoft.Playwright" Version="1.39.1" />
+      <PackageReference Include="CsvHelper" Version="30.0.1" />
   </ItemGroup>
 
 </Project>

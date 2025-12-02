@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace StackRadar.Core.Scouting;
 
@@ -17,57 +19,38 @@ public sealed class BuiltWithCsvSource : IDomainSource
 
     public async IAsyncEnumerable<DomainCandidate> FetchAsync(DomainSourceRequest request, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        var csvFile = "ASP.NET websites in Nigeria - 2025-10-12.csv";
+        var csvFile = "ASP.NET websites in Nigeria - 2025-10-12.csv"; // Or pass via config
         if (!File.Exists(csvFile))
         {
             _logger.LogWarning("BuiltWith CSV file not found: {File}", csvFile);
             yield break;
         }
 
-        var lines = await File.ReadAllLinesAsync(csvFile, cancellationToken);
-        if (lines.Length < 2)
-        {
-            _logger.LogWarning("CSV file appears to be empty or invalid");
-            yield break;
-        }
-
-        // Parse header to find column indices
-        var header = lines[0].Split(',');
-        var rootDomainIndex = Array.IndexOf(header, "Root Domain");
-        var companyIndex = Array.IndexOf(header, "Company");
-        var verticalIndex = Array.IndexOf(header, "Vertical");
-        var cityIndex = Array.IndexOf(header, "City");
-        var countryIndex = Array.IndexOf(header, "Country");
-        var firstDetectedIndex = Array.IndexOf(header, "First Detected");
-        var lastFoundIndex = Array.IndexOf(header, "Last Found");
-        var technologySpendIndex = Array.IndexOf(header, "Technology Spend");
-        var salesRevenueIndex = Array.IndexOf(header, "Sales Revenue");
-        var employeesIndex = Array.IndexOf(header, "Employees");
-
-        if (rootDomainIndex == -1)
-        {
-            _logger.LogError("Root Domain column not found in CSV");
-            yield break;
-        }
-
         var totalYielded = 0;
         var limit = request.Limit;
 
-        // Skip header and process each line
-        foreach (var line in lines.Skip(1))
+        using var reader = new StreamReader(csvFile);
+        using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            if (string.IsNullOrWhiteSpace(line))
-                continue;
+            HasHeaderRecord = true,
+            MissingFieldFound = null, // Ignore missing columns gracefully
+            BadDataFound = null       // Ignore bad data gracefully
+        });
 
-            var columns = ParseCsvLine(line);
-            if (columns.Length <= rootDomainIndex)
-                continue;
+        // Dynamic reading allows flexibility without a rigid class
+        var records = csv.GetRecordsAsync<dynamic>(cancellationToken);
 
-            var rootDomain = columns[rootDomainIndex]?.Trim();
+        await foreach (var rec in records)
+        {
+            // Cast to dictionary to access fields safely
+            var dict = (IDictionary<string, object?>)rec;
+
+            dict.TryGetValue("Root Domain", out var rd);
+            var rootDomain = rd?.ToString()?.Trim();
             if (string.IsNullOrWhiteSpace(rootDomain))
                 continue;
 
-            // Skip non-Nigerian domains (though this file should only contain .ng domains)
+            // Skip non-Nigerian domains
             if (!rootDomain.EndsWith(".ng", StringComparison.OrdinalIgnoreCase) &&
                 !rootDomain.Contains(".com.ng") &&
                 !rootDomain.Contains(".edu.ng") &&
@@ -84,33 +67,32 @@ public sealed class BuiltWithCsvSource : IDomainSource
                 ["reportDate"] = "2025-10-12"
             };
 
-            // Add additional metadata if available
-            if (companyIndex >= 0 && companyIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[companyIndex]))
-                metadata["company"] = columns[companyIndex].Trim();
+            if (dict.TryGetValue("Company", out var company) && company is not null)
+                metadata["company"] = company.ToString()!;
 
-            if (verticalIndex >= 0 && verticalIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[verticalIndex]))
-                metadata["vertical"] = columns[verticalIndex].Trim();
+            if (dict.TryGetValue("Vertical", out var vertical) && vertical is not null)
+                metadata["vertical"] = vertical.ToString()!;
 
-            if (cityIndex >= 0 && cityIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[cityIndex]))
-                metadata["city"] = columns[cityIndex].Trim();
+            if (dict.TryGetValue("City", out var city) && city is not null)
+                metadata["city"] = city.ToString()!;
 
-            if (countryIndex >= 0 && countryIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[countryIndex]))
-                metadata["country"] = columns[countryIndex].Trim();
+            if (dict.TryGetValue("Country", out var country) && country is not null)
+                metadata["country"] = country.ToString()!;
 
-            if (firstDetectedIndex >= 0 && firstDetectedIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[firstDetectedIndex]))
-                metadata["firstDetected"] = columns[firstDetectedIndex].Trim();
+            if (dict.TryGetValue("First Detected", out var firstDetected) && firstDetected is not null)
+                metadata["firstDetected"] = firstDetected.ToString()!;
 
-            if (lastFoundIndex >= 0 && lastFoundIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[lastFoundIndex]))
-                metadata["lastFound"] = columns[lastFoundIndex].Trim();
+            if (dict.TryGetValue("Last Found", out var lastFound) && lastFound is not null)
+                metadata["lastFound"] = lastFound.ToString()!;
 
-            if (technologySpendIndex >= 0 && technologySpendIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[technologySpendIndex]))
-                metadata["technologySpend"] = columns[technologySpendIndex].Trim();
+            if (dict.TryGetValue("Technology Spend", out var techSpend) && techSpend is not null)
+                metadata["technologySpend"] = techSpend.ToString()!;
 
-            if (salesRevenueIndex >= 0 && salesRevenueIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[salesRevenueIndex]))
-                metadata["salesRevenue"] = columns[salesRevenueIndex].Trim();
+            if (dict.TryGetValue("Sales Revenue", out var salesRevenue) && salesRevenue is not null)
+                metadata["salesRevenue"] = salesRevenue.ToString()!;
 
-            if (employeesIndex >= 0 && employeesIndex < columns.Length && !string.IsNullOrWhiteSpace(columns[employeesIndex]))
-                metadata["employees"] = columns[employeesIndex].Trim();
+            if (dict.TryGetValue("Employees", out var employees) && employees is not null)
+                metadata["employees"] = employees.ToString()!;
 
             yield return DomainCandidate.Create(rootDomain, Name, 0.9, metadata);
 
@@ -122,42 +104,5 @@ public sealed class BuiltWithCsvSource : IDomainSource
         _logger.LogInformation("Processed {Count} domains from BuiltWith CSV", totalYielded);
     }
 
-    private static string[] ParseCsvLine(string line)
-    {
-        var result = new List<string>();
-        var current = new System.Text.StringBuilder();
-        var inQuotes = false;
-        var quoteChar = '"';
-
-        for (var i = 0; i < line.Length; i++)
-        {
-            var c = line[i];
-
-            if (!inQuotes && c == ',')
-            {
-                result.Add(current.ToString());
-                current.Clear();
-            }
-            else if (c == quoteChar)
-            {
-                if (inQuotes && i + 1 < line.Length && line[i + 1] == quoteChar)
-                {
-                    // Escaped quote
-                    current.Append(quoteChar);
-                    i++; // Skip next quote
-                }
-                else
-                {
-                    inQuotes = !inQuotes;
-                }
-            }
-            else
-            {
-                current.Append(c);
-            }
-        }
-
-        result.Add(current.ToString());
-        return result.ToArray();
-    }
+    // CSV parsing delegated to CsvHelper (GetRecords<dynamic>()), no manual parser required
 }

@@ -1,0 +1,318 @@
+C:\Users\DELL\Desktop\Coded\stackTracer\StackRadar.Cli\StackRadar.Cli.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\DELL\Desktop\Coded\stackTracer\StackRadar.Cli\StackRadar.Cli.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+Fetching domains...
+12:05:24 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Abiastatepolytechnic%20Nigeria
+12:05:24 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Abiastatepolytechnic%20Nigeria
+12:05:26 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 1760.2468ms - 200
+12:05:26 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 1825.0558ms - 200
+12:05:27 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Abubakaradamu%20Nigeria
+12:05:27 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Abubakaradamu%20Nigeria
+12:05:28 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 806.3271ms - 200
+12:05:28 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 806.5143ms - 200
+12:05:29 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Africarbhmotorgroup%20Nigeria
+12:05:29 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Africarbhmotorgroup%20Nigeria
+12:05:30 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 1005.8943ms - 200
+12:05:30 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 1007.4237ms - 200
+12:05:31 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Amcon%20Nigeria
+12:05:31 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Amcon%20Nigeria
+12:05:32 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 832.1233ms - 200
+12:05:32 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 833.1674ms - 200
+12:05:33 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ananuniversity%20Nigeria
+12:05:33 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ananuniversity%20Nigeria
+12:05:34 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 1091.4082ms - 200
+12:05:34 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 1092.357ms - 200
+12:05:35 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ascellon%20Nigeria
+12:05:35 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ascellon%20Nigeria
+12:05:36 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 822.8045ms - 200
+12:05:36 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 823.4806ms - 200
+12:05:37 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Bamshopmaster%20Nigeria
+12:05:37 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Bamshopmaster%20Nigeria
+12:05:37 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 724.6934ms - 200
+12:05:37 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 725.2092ms - 200
+12:05:38 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Carespace%20Nigeria
+12:05:38 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Carespace%20Nigeria
+12:05:39 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 749.3167ms - 200
+12:05:39 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 749.4588ms - 200
+12:05:40 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Casty%20Nigeria
+12:05:40 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Casty%20Nigeria
+12:05:41 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 699.5549ms - 200
+12:05:41 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 700.039ms - 200
+12:05:42 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Citypros%20Nigeria
+12:05:42 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Citypros%20Nigeria
+12:05:43 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 689.8985ms - 200
+12:05:43 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 690.0843ms - 200
+12:05:44 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Codestash%20Nigeria
+12:05:44 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Codestash%20Nigeria
+12:05:44 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 798.3594ms - 200
+12:05:44 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 798.61ms - 200
+12:05:45 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Cornerstone%20Nigeria
+12:05:45 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Cornerstone%20Nigeria
+12:05:46 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 716.5943ms - 200
+12:05:46 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 717.627ms - 200
+12:05:47 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Cyberproofsolutions%20Nigeria
+12:05:47 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Cyberproofsolutions%20Nigeria
+12:05:48 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 838.1325ms - 200
+12:05:48 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 838.3362ms - 200
+12:05:49 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Dolatmultiglobal%20Shopmaster%20Nigeria
+12:05:49 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Dolatmultiglobal%20Shopmaster%20Nigeria
+12:05:50 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 737.4983ms - 200
+12:05:50 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 739.4169ms - 200
+12:05:51 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Dreamviewhotelpro%20Nigeria
+12:05:51 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Dreamviewhotelpro%20Nigeria
+12:05:52 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 758.0504ms - 200
+12:05:52 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 758.2317ms - 200
+12:05:53 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Drexpress%20Nigeria
+12:05:53 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Drexpress%20Nigeria
+12:05:53 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 746.2514ms - 200
+12:05:53 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 746.6571ms - 200
+12:05:54 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Eagriculture%20Nigeria
+12:05:54 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Eagriculture%20Nigeria
+12:05:55 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 819.4467ms - 200
+12:05:55 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 819.9125ms - 200
+12:05:56 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ebms%20Nigeria
+12:05:56 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ebms%20Nigeria
+12:05:57 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 794.6609ms - 200
+12:05:57 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 796.2678ms - 200
+12:05:58 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Edorevpay%20Nigeria
+12:05:58 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Edorevpay%20Nigeria
+12:05:59 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 731.3663ms - 200
+12:05:59 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 731.6047ms - 200
+12:06:00 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Energyhub%20Nigeria
+12:06:00 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Energyhub%20Nigeria
+12:06:01 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 767.8165ms - 200
+12:06:01 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 768.0176ms - 200
+12:06:02 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Estudy%20Nigeria
+12:06:02 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Estudy%20Nigeria
+12:06:03 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 905.3571ms - 200
+12:06:03 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 905.8598ms - 200
+12:06:04 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Etbmanager%20Nigeria
+12:06:04 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Etbmanager%20Nigeria
+12:06:04 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 737.772ms - 200
+12:06:04 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 738.221ms - 200
+12:06:05 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Fetem%20Nigeria
+12:06:05 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Fetem%20Nigeria
+12:06:06 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 756.7335ms - 200
+12:06:06 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 756.9156ms - 200
+12:06:07 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Fggcjalingo.Sch%20Nigeria
+12:06:07 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Fggcjalingo.Sch%20Nigeria
+12:06:08 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 735.2654ms - 200
+12:06:08 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 735.4147ms - 200
+12:06:09 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Fmcide%20Nigeria
+12:06:09 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Fmcide%20Nigeria
+12:06:10 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 936.9809ms - 200
+12:06:10 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 937.354ms - 200
+12:06:11 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Forumbot%20Nigeria
+12:06:11 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Forumbot%20Nigeria
+12:06:12 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 812.5023ms - 200
+12:06:12 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 812.9258ms - 200
+12:06:13 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Gdlotto%20Nigeria
+12:06:13 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Gdlotto%20Nigeria
+12:06:13 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 743.7318ms - 200
+12:06:13 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 743.9268ms - 200
+12:06:14 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Gitechhub%20Nigeria
+12:06:14 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Gitechhub%20Nigeria
+12:06:15 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 725.0008ms - 200
+12:06:15 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 725.2618ms - 200
+12:06:16 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Guardiancredit%20Nigeria
+12:06:16 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Guardiancredit%20Nigeria
+12:06:17 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 767.011ms - 200
+12:06:17 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 767.1951ms - 200
+12:06:18 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Harmonioustelecom%20Nigeria
+12:06:18 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Harmonioustelecom%20Nigeria
+12:06:19 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 821.5269ms - 200
+12:06:19 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 822.2086ms - 200
+12:06:20 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Hauwauconfectionariesandfarmventures%20Nigeria
+12:06:20 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Hauwauconfectionariesandfarmventures%20Nigeria
+12:06:20 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 721.4483ms - 200
+12:06:20 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 721.7052ms - 200
+12:06:22 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Iham%20Nigeria
+12:06:22 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Iham%20Nigeria
+12:06:22 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 940.5447ms - 200
+12:06:22 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 940.687ms - 200
+12:06:24 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Itf%20Nigeria
+12:06:24 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Itf%20Nigeria
+12:06:24 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 743.9562ms - 200
+12:06:24 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 744.0261ms - 200
+12:06:25 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Jmcs%20Nigeria
+12:06:25 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Jmcs%20Nigeria
+12:06:26 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 701.7371ms - 200
+12:06:26 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 701.903ms - 200
+12:06:27 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Kadppa%20Nigeria
+12:06:27 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Kadppa%20Nigeria
+12:06:28 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 804.1168ms - 200
+12:06:28 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 804.2733ms - 200
+12:06:29 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Kippispayroll%20Nigeria
+12:06:29 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Kippispayroll%20Nigeria
+12:06:30 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 1169.2926ms - 200
+12:06:30 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 1169.6812ms - 200
+12:06:31 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Kmcresultportal%20Nigeria
+12:06:31 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Kmcresultportal%20Nigeria
+12:06:32 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 729.3365ms - 200
+12:06:32 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 729.4594ms - 200
+12:06:33 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Lapiestreats%20Nigeria
+12:06:33 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Lapiestreats%20Nigeria
+12:06:33 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 745.0453ms - 200
+12:06:33 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 745.196ms - 200
+12:06:35 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Litour%20Nigeria
+12:06:35 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Litour%20Nigeria
+12:06:35 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 676.09ms - 200
+12:06:35 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 676.2122ms - 200
+12:06:36 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Logicversion%20Nigeria
+12:06:36 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Logicversion%20Nigeria
+12:06:37 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 747.1604ms - 200
+12:06:37 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 748.6679ms - 200
+12:06:38 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Mapleleaf%20Nigeria
+12:06:38 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Mapleleaf%20Nigeria
+12:06:39 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 762.2614ms - 200
+12:06:39 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 762.4682ms - 200
+12:06:40 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Marbiskreations%20Nigeria
+12:06:40 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Marbiskreations%20Nigeria
+12:06:40 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 732.1744ms - 200
+12:06:40 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 732.5371ms - 200
+12:06:42 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Mascus%20Nigeria
+12:06:42 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Mascus%20Nigeria
+12:06:42 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 714.5926ms - 200
+12:06:42 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 715.9188ms - 200
+12:06:43 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Mutualbenefitsmfb%20Nigeria
+12:06:43 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Mutualbenefitsmfb%20Nigeria
+12:06:44 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 702.6114ms - 200
+12:06:44 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 703.1547ms - 200
+12:06:45 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Myexams%20Nigeria
+12:06:45 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Myexams%20Nigeria
+12:06:46 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 724.7566ms - 200
+12:06:46 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 725.6925ms - 200
+12:06:47 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Naddc%20Nigeria
+12:06:47 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Naddc%20Nigeria
+12:06:47 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 686.7287ms - 200
+12:06:47 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 689.3386ms - 200
+12:06:48 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nairacompare%20Nigeria
+12:06:48 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nairacompare%20Nigeria
+12:06:49 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 726.0785ms - 200
+12:06:49 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 726.1887ms - 200
+12:06:50 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nass%20Nigeria
+12:06:50 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nass%20Nigeria
+12:06:51 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 719.8831ms - 200
+12:06:51 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 720.4829ms - 200
+12:06:52 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nbssurveys%20Nigeria
+12:06:52 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nbssurveys%20Nigeria
+12:06:53 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 765.6598ms - 200
+12:06:53 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 766.2873ms - 200
+12:06:54 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ncce%20Nigeria
+12:06:54 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ncce%20Nigeria
+12:06:54 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 700.5688ms - 200
+12:06:54 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 700.6709ms - 200
+12:06:55 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nibss%20Plc%20Nigeria
+12:06:55 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nibss%20Plc%20Nigeria
+12:06:56 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 786.7015ms - 200
+12:06:56 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 787.0794ms - 200
+12:06:57 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nsa%20Nigeria
+12:06:57 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nsa%20Nigeria
+12:06:58 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 740.3997ms - 200
+12:06:58 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 740.8101ms - 200
+12:06:59 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nutrition774%20Nigeria
+12:06:59 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Nutrition774%20Nigeria
+12:07:00 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 749.6947ms - 200
+12:07:00 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 750.1294ms - 200
+12:07:01 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Optimumresourcesmgt%20Nigeria
+12:07:01 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Optimumresourcesmgt%20Nigeria
+12:07:02 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 724.9493ms - 200
+12:07:02 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 726.7898ms - 200
+12:07:03 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Osgof%20Nigeria
+12:07:03 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Osgof%20Nigeria
+12:07:03 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 786.3221ms - 200
+12:07:03 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 787.9082ms - 200
+12:07:04 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Otondo%20Nigeria
+12:07:04 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Otondo%20Nigeria
+12:07:05 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 904.5184ms - 200
+12:07:05 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 904.6324ms - 200
+12:07:06 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Paytv%20Nigeria
+12:07:06 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Paytv%20Nigeria
+12:07:07 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 725.783ms - 200
+12:07:07 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 726.6098ms - 200
+12:07:08 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Pppra%20Nigeria
+12:07:08 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Pppra%20Nigeria
+12:07:09 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 934.8958ms - 200
+12:07:09 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 935.1572ms - 200
+12:07:10 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Preeze92telecombiz%20Nigeria
+12:07:10 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Preeze92telecombiz%20Nigeria
+12:07:11 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 787.0883ms - 200
+12:07:11 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 787.255ms - 200
+12:07:12 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Romisconsultants%20Nigeria
+12:07:12 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Romisconsultants%20Nigeria
+12:07:13 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 902.0878ms - 200
+12:07:13 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 902.3661ms - 200
+12:07:14 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Scopeshopmaster%20Nigeria
+12:07:14 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Scopeshopmaster%20Nigeria
+12:07:14 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 810.1661ms - 200
+12:07:14 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 810.996ms - 200
+12:07:15 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Shalomvetclinic%20Nigeria
+12:07:15 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Shalomvetclinic%20Nigeria
+12:07:16 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 755.6688ms - 200
+12:07:16 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 755.8108ms - 200
+12:07:17 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Sls%20Nigeria
+12:07:17 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Sls%20Nigeria
+12:07:18 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 692.6339ms - 200
+12:07:18 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 692.7593ms - 200
+12:07:19 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Smartcloud%20Nigeria
+12:07:19 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Smartcloud%20Nigeria
+12:07:20 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 833.3198ms - 200
+12:07:20 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 833.4469ms - 200
+12:07:21 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Smartfunds%20Nigeria
+12:07:21 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Smartfunds%20Nigeria
+12:07:22 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 947.794ms - 200
+12:07:22 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 947.9368ms - 200
+12:07:23 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ssds%20Nigeria
+12:07:23 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Ssds%20Nigeria
+12:07:24 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 787.1494ms - 200
+12:07:24 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 787.73ms - 200
+12:07:24 dbug: Microsoft.Extensions.Http.DefaultHttpClientFactory[103] HttpMessageHandler expired after 120000ms for client 'scout'
+12:07:25 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Teloengineeringlimited%20Nigeria
+12:07:25 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Teloengineeringlimited%20Nigeria
+12:07:25 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 760.6486ms - 200
+12:07:25 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 761.2903ms - 200
+12:07:27 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Terraco%20Nigeria
+12:07:27 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Terraco%20Nigeria
+12:07:27 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 719.6043ms - 200
+12:07:27 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 719.7276ms - 200
+12:07:28 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Thepolytechniciresi%20Nigeria
+12:07:28 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Thepolytechniciresi%20Nigeria
+12:07:29 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 722.6704ms - 200
+12:07:29 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 723.9734ms - 200
+12:07:30 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Thesentinel%20Nigeria
+12:07:30 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Thesentinel%20Nigeria
+12:07:31 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 705.8087ms - 200
+12:07:31 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 705.8646ms - 200
+12:07:32 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Topmostportal%20Nigeria
+12:07:32 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Topmostportal%20Nigeria
+12:07:32 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 744.4098ms - 200
+12:07:32 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 744.5492ms - 200
+12:07:33 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Totalenergies%20Nigeria
+12:07:33 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Totalenergies%20Nigeria
+12:07:34 dbug: Microsoft.Extensions.Http.DefaultHttpClientFactory[100] Starting HttpMessageHandler cleanup cycle with 1 items
+12:07:34 dbug: Microsoft.Extensions.Http.DefaultHttpClientFactory[101] Ending HttpMessageHandler cleanup cycle after 0.0978ms - processed: 0 items - remaining: 1 items
+12:07:34 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 754.5972ms - 200
+12:07:34 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 754.7715ms - 200
+12:07:35 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Transact%20Nigeria
+12:07:35 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Transact%20Nigeria
+12:07:36 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 859.9447ms - 200
+12:07:36 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 860.9464ms - 200
+12:07:37 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Victoriaschool%20Nigeria
+12:07:37 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Victoriaschool%20Nigeria
+12:07:38 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 933.0349ms - 200
+12:07:38 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 933.5462ms - 200
+12:07:39 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Wandoo%20Nigeria
+12:07:39 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Wandoo%20Nigeria
+12:07:40 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 925.4533ms - 200
+12:07:40 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 925.6619ms - 200
+12:07:41 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Zirsfinance%20Nigeria
+12:07:41 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Zirsfinance%20Nigeria
+12:07:42 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 746.5632ms - 200
+12:07:42 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 746.7157ms - 200
+12:07:43 info: System.Net.Http.HttpClient.scout.LogicalHandler[100] Start processing HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Zohoapps%20Nigeria
+12:07:43 info: System.Net.Http.HttpClient.scout.ClientHandler[100] Sending HTTP request GET https://www.linkedin.com/search/results/companies/?keywords=Zohoapps%20Nigeria
+12:07:44 dbug: Microsoft.Extensions.Http.DefaultHttpClientFactory[100] Starting HttpMessageHandler cleanup cycle with 1 items
+12:07:44 dbug: Microsoft.Extensions.Http.DefaultHttpClientFactory[101] Ending HttpMessageHandler cleanup cycle after 0.0069ms - processed: 0 items - remaining: 1 items
+12:07:44 info: System.Net.Http.HttpClient.scout.ClientHandler[101] Received HTTP response headers after 1011.5747ms - 200
+12:07:44 info: System.Net.Http.HttpClient.scout.LogicalHandler[101] End processing HTTP request after 1011.8097ms - 200
+12:07:45 info: StackRadar.Core.Scouting.LinkedInSource[0] Enriched 0 domains with LinkedIn data
+No targets discovered from the source.

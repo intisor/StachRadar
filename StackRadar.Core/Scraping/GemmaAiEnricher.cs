@@ -276,7 +276,8 @@ Format: bullet points, one per line.";
 public sealed class GemmaOptions
 {
     public string Endpoint { get; set; } = "http://localhost:11434";
-    public string Model { get; set; } = "gemma:7b";
+    // Use the smaller gemma:2b model by default for low-RAM machines
+    public string Model { get; set; } = "gemma:2b";
     public bool Enabled { get; set; } = true;
 }
 

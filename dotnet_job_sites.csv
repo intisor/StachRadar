@@ -1,0 +1,16 @@
+SiteId,SiteName,BaseUrl,SearchPattern,Keywords,Selectors,Priority,Active
+1,Dice,https://www.dice.com,/search?q={keyword}+filters%3DskillsDeveloper.NETorC%23,".NET Developer,ASP.NET,C# Developer,Full Stack .NET",job-card,company-name,very-high,true
+2,Indeed,https://www.indeed.com,/jobs?q={keyword}+.NET,".NET Developer,ASP.NET,C# Developer,Entity Framework",result,company,high,true
+3,We Work Remotely,https://www.weworkremotely.com,/categories/remote-programming-jobs?search={keyword},".NET,ASP.NET,C#,Remote .NET",job-listing,company,high,true
+4,Stack Overflow,https://stackoverflow.com/jobs,/jobs?searchTerm={keyword}&location=remote,".NET Developer,C#,ASP.NET Core",job-card,company-name,medium,true
+5,GitHub Jobs,https://github.com/search/advanced,?q=language:csharp+.NET+hiring,".NET,C#,ASP.NET",job-item,company,medium,true
+6,AngelList,https://angel.co/jobs,?keyword={keyword}&type=job,".NET,ASP.NET,C# Developer,Startup .NET",job-card,company-name,medium,true
+7,Remote.co,https://remote.co,/remote-{keyword}-jobs,".NET Developer,C# Developer,ASP.NET",job-card,company-name,medium,true
+8,ZipRecruiter,https://www.ziprecruiter.com,/Jobs/{keyword}/NET-Developer,".NET,ASP.NET,C# Developer",job-card,company-name,low,true
+9,LinkedIn,https://www.linkedin.com/jobs,/search/?keywords={keyword}+.NET,".NET Developer,ASP.NET,C# Developer",base__flex-base-card,company-name,low,false
+10,Glassdoor,https://www.glassdoor.com/Job,/Job-Search?keyword={keyword}+.NET,".NET,ASP.NET,C# Developer",jobCard,employer,low,true
+11,FlexJobs,https://www.flexjobs.com,/?keyword={keyword}+.NET,".NET Developer,C#,ASP.NET Core",job-card,company-name,low,true
+12,CareerBuilder,https://www.careerbuilder.com,/jobs/?keywords={keyword}+.NET,".NET Developer,C#,ASP.NET",result,company,low,true
+13,Monster,https://www.monster.com,/jobs/search/?q={keyword}-NET,".NET,ASP.NET,C# Developer",job-card,company,low,true
+14,SimplyHired,https://www.simplyhired.com,/search?q={keyword}+.NET,".NET Developer,C#,ASP.NET",result,company,low,true
+15,Gun.io,https://gun.io/find-a-developer,/?q={keyword}+.NET,".NET Developer,C#,ASP.NET",job-card,company-name,medium,true

@@ -326,26 +326,55 @@ public sealed class DomainScanner : IDomainScanner
                 var submitResult = System.Text.Json.JsonSerializer.Deserialize<UrlScanSubmitResponse>(submitContent);
                 if (submitResult?.Uuid != null)
                 {
-                    // Wait a bit and get results
-                    await Task.Delay(5000, cancellationToken); // Wait 5 seconds
+                    // Smart Polling Loop: poll every 1s for up to 15s. Exit early on success.
                     var resultUrl = $"https://urlscan.io/api/v1/result/{submitResult.Uuid}/";
-                    using var resultResponse = await client.GetAsync(resultUrl, cancellationToken);
-                    if (resultResponse.IsSuccessStatusCode)
+                    using var timer = new System.Threading.PeriodicTimer(TimeSpan.FromSeconds(1));
+                    using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                    timeoutCts.CancelAfter(TimeSpan.FromSeconds(15)); // Cap total wait
+
+                    try
                     {
-                        var resultContent = await resultResponse.Content.ReadAsStringAsync(cancellationToken);
-                        var result = System.Text.Json.JsonSerializer.Deserialize<UrlScanResult>(resultContent);
-                        if (result?.Data?.Technologies != null)
+                        while (await timer.WaitForNextTickAsync(timeoutCts.Token))
                         {
-                            var aspNetTechs = result.Data.Technologies.Where(t => t.Contains("ASP.NET", StringComparison.OrdinalIgnoreCase));
-                            if (aspNetTechs.Any())
+                            using var checkResponse = await client.GetAsync(resultUrl, cancellationToken);
+
+                            if (checkResponse.StatusCode == HttpStatusCode.OK)
                             {
-                                evidence.Add(new DetectionEvidence(
-                                    DetectionSignal.BuiltWithAspNet, // Reuse signal
-                                    "URLscan.io detected ASP.NET",
-                                    string.Join(", ", aspNetTechs),
-                                    1));
+                                // Success! Grab data and break
+                                var resultContent = await checkResponse.Content.ReadAsStringAsync(cancellationToken);
+                                var result = System.Text.Json.JsonSerializer.Deserialize<UrlScanResult>(resultContent);
+
+                                if (result?.Data?.Technologies != null)
+                                {
+                                    var aspNetTechs = result.Data.Technologies
+                                        .Where(t => t.Contains("ASP.NET", StringComparison.OrdinalIgnoreCase));
+
+                                    if (aspNetTechs.Any())
+                                    {
+                                        evidence.Add(new DetectionEvidence(
+                                            DetectionSignal.BuiltWithAspNet,
+                                            "URLscan.io detected ASP.NET",
+                                            string.Join(", ", aspNetTechs),
+                                            1));
+                                    }
+                                }
+                                break; // Exit loop immediately on success
+                            }
+                            else if (checkResponse.StatusCode == HttpStatusCode.NotFound)
+                            {
+                                // 404 means "not ready yet", keep looping
+                                continue;
+                            }
+                            else
+                            {
+                                break; // Unknown error, stop trying
                             }
                         }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        // Timeout reached, move on without crashing
+                        _logger.LogWarning("URLscan enrichment timed out for {Domain}", domain);
                     }
                 }
             }

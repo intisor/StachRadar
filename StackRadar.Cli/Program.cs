@@ -187,16 +187,26 @@ static async Task<int> RunScoutAsync(string[] args)
 				AllowAutoRedirect = true
 			});
 
+			// Legacy sources (kept for compatibility)
 			services.AddTransient<BuiltWithDotNetSource>();
 			services.AddTransient<WebContentExtractor>();
 			services.AddTransient<AdvancedWebScraperSource>();
 			services.AddTransient<DotNetJobScraper>();
 			
-			// Configure Gemma AI enricher
+			// NEW: Register the Playwright-based Google SERP scraper
+			services.AddTransient<GoogleDorkSource>();
+			
+			// NEW: Register the CsvHelper-based CSV source
+			services.AddTransient<BuiltWithCsvSource>();
+			
+			// NEW: Register the Playwright deep recon scraper
+			services.AddTransient<PlaywrightScraper>();
+			
+			// Configure Gemma AI enricher (gemma:2b for 8GB RAM machines)
 			var gemmaOptions = new GemmaOptions
 			{
 				Endpoint = "http://localhost:11434",
-				Model = "gemma:7b",
+				Model = "gemma:2b", // CRACK DEV FIX: Use lightweight model for E6440
 				Enabled = true
 			};
 			services.AddSingleton(gemmaOptions);
@@ -209,10 +219,25 @@ static async Task<int> RunScoutAsync(string[] args)
 
 	IDomainSource source = options.Source.ToLowerInvariant() switch
 	{
+		// NEW: The "Sniper" Playwright-based Google SERP scraper (free, no API needed)
+		"googleserper" => host.Services.GetRequiredService<GoogleDorkSource>(),
+		"google" => host.Services.GetRequiredService<GoogleDorkSource>(), // Alias
+		
+		// NEW: The CsvHelper-based CSV source for BuiltWith data
+		"csv" => host.Services.GetRequiredService<BuiltWithCsvSource>(),
+		"builtwithcsv" => host.Services.GetRequiredService<BuiltWithCsvSource>(),
+		
+		// Legacy sources (kept for compatibility)
 		"builtwithdotnet" => host.Services.GetRequiredService<BuiltWithDotNetSource>(),
 		"fullscrape" => host.Services.GetRequiredService<AdvancedWebScraperSource>(),
-		"dotnetjobs" => host.Services.GetRequiredService<DotNetJobScraper>(),
-		_ => throw new InvalidOperationException($"Unknown source '{options.Source}'.")
+		
+		// Deprecated source
+		"dotnetjobs" => throw new InvalidOperationException(
+			"The 'dotnetjobs' source has been deprecated (job sites block scrapers). " +
+			"Use 'googleserper' or 'csv' instead."),
+		
+		_ => throw new InvalidOperationException(
+			$"Unknown source '{options.Source}'. Available: googleserper, google, csv, builtwithcsv, builtwithdotnet, fullscrape")
 	};
 
 	var request = new DomainSourceRequest
@@ -556,8 +581,12 @@ internal sealed record ScoutOptions
 		table.AddRow("--source, -s", "Domain source to run (default: builtwithdotnet)");
 		table.AddRow("--limit, -l", "Maximum domains to retrieve (default: 200)");
 		table.AddRow("--pages, -p", "Maximum pages to iterate (default: 5)");
-		table.AddRow("--query, -q", "Optional filter (e.g., technology flag)");
-		table.AddRow("", "Sources: builtwithdotnet | fullscrape | dotnetjobs");
+		table.AddRow("--query, -q", "Optional filter/search query");
+		table.AddRow("", "[bold]Sources:[/]");
+		table.AddRow("", "  googleserper, google - Playwright Google SERP scraper (recommended)");
+		table.AddRow("", "  csv, builtwithcsv    - BuiltWith CSV file parser");
+		table.AddRow("", "  builtwithdotnet      - Legacy BuiltWith website scraper");
+		table.AddRow("", "  fullscrape           - Advanced web scraper");
 		table.AddRow("--output, -o", "File to write domains to (default: discovered.txt)");
 		table.AddRow("--append", "Append to output instead of overwrite");
 		table.AddRow("--timeout", "Per-request timeout in seconds (default: 30)");
